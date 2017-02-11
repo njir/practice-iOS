@@ -17,8 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-    // Override point for customization after application launch.
-    return true
+        // to display a splash screen for a longer (1 sec) 
+        //RunLoop.current.run(until: NSDate(timeIntervalSinceNow: 1) as Date)
+        return true
     }
 
 
