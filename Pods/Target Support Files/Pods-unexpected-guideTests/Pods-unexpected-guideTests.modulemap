@@ -1,0 +1,6 @@
+framework module Pods_unexpected_guideTests {
+  umbrella header "Pods-unexpected-guideTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
