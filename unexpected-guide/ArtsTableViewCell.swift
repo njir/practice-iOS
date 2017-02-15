@@ -15,7 +15,9 @@ class ArtsTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        // Make image rouded corners
+        artImage.layer.cornerRadius = artImage.frame.width/8
+        artImage.clipsToBounds = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

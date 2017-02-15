@@ -14,11 +14,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // to display a splash screen for a longer (1 sec) 
         //RunLoop.current.run(until: NSDate(timeIntervalSinceNow: 1) as Date)
+        
         return true
     }
 
@@ -50,7 +49,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
-
+    
 }
+
+let mainColor: UIColor = UIColor(red:0.29, green:0.09, blue:0.24, alpha:1.00)
+let backgroundColor: UIColor = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.00)

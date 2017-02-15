@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import Alamofire
+import AlamofireObjectMapper
+import SwiftyJSON
 
 class ArtsTableViewController: UITableViewController {
     // MARK: Properties
@@ -16,59 +19,67 @@ class ArtsTableViewController: UITableViewController {
     let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
     
     var searchWord: String?
-    var items = [MyItem]()
-    var filtered = [MyItem]()
     var isDataLoading: Bool = false
-    var isViewLoading = false;
+    var isViewLoading: Bool = true
     
+    
+    let baseUrl: String = "http://localhost:3000/api/art?keyword="
+    let requestManager = RequestManager()
+    var searchResults = [ArtData]() {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+    var validatedText: String {
+        return searchController.searchBar.text!.replacingOccurrences(of: " ", with: "").lowercased()
+    }
+
     // MARK: Outlets
     @IBOutlet weak var MyFooterView: UIView! // to show loading indicator
     
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Setup data
-        loadSegment(offset: 0, size: 20)
-        filtered = items
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(ArtsTableViewController.updateSearchResults), name: NSNotification.Name(rawValue: "searchResultsUpdated"), object: nil)
+        
+        // Get data with search word
+        requestManager.searchArt(searchText: self.searchWord!)
+        self.MyFooterView.isHidden = true
         
         // Show indicatior
-        isViewLoading = true;
         activityIndicator.center = view.center
         activityIndicator.startAnimating()
         view.addSubview(activityIndicator)
         
-        // Setup the Search Controller
-        searchController.searchBar.placeholder = "작품명 또는 작가명"
-        searchController.searchResultsUpdater = self
-        searchController.searchBar.delegate = self
-        searchController.searchBar.text = searchWord
-        definesPresentationContext = true
-        searchController.dimsBackgroundDuringPresentation = false
-        tableView.tableHeaderView = searchController.searchBar
+        // Setup searchController and searchBar
+        setupSearchBar()
     }
+   
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        filterContentForSearchText(searchController.searchBar.text!)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         activityIndicator.stopAnimating()
-        isViewLoading = false;
         searchController.isActive = true;
+        isViewLoading = false;
+        tableView.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
+    
     // MARK: - Table View data source
     override func numberOfSections(in tableView: UITableView) -> Int {
         var numOfSections: Int = 0
         
-        if(!isViewLoading) { // Show spin indicatior when isViewLoading is true
-            if filtered.count != 0 || searchController.searchBar.text == ""  {
+        if isViewLoading == false  { // Show spin indicatior when isViewLoading is true
+            if searchResults.count != 0 || searchController.searchBar.text == ""  {
                 tableView.separatorStyle = .singleLine
                 numOfSections            = 1
                 tableView.backgroundView = nil
@@ -83,16 +94,12 @@ class ArtsTableViewController: UITableViewController {
                 tableView.separatorStyle  = .none
             }
         }
+        
         return numOfSections
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if searchController.searchBar.text != "" {
-            return filtered.count
-        }
-        else {
-            return items.count
-        }
+        return searchResults.count
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
@@ -103,33 +110,20 @@ class ArtsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: ArtsTableViewCell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! ArtsTableViewCell
-        let item: MyItem
-        if searchController.searchBar.text != "" {
-            item = filtered[indexPath.row]
-        }
-        else {
-            item = items[indexPath.row]
-        }
+        let item: ArtData
+        item = searchResults[indexPath.row]
         
-        let imagename = getRandomNumberBetween(From: 1, To: 10).description + ".png"
-        cell.artImage.image = UIImage(named: imagename)! as UIImage
-        cell.artTitle.text = item.name as String
-        cell.artDescription.text = item.detail as String
+        ImageLoader.sharedLoader.imageForUrl(urlString: item.ThumbImage.url, completionHandler:{(image: UIImage?, url: String) in
+            cell.artImage.image = image
+        })
+        cell.artTitle.text = item.koreanName
+        cell.artDescription.text = item.description
         
         return cell
     }
     
     
-    func filterContentForSearchText(_ searchText: String) {
-        filtered.removeAll()
-        for item in items {
-            if(item.contains(item.name, substring: searchText) || item.contains(item.detail, substring: searchText)) {
-                filtered.append(item)
-            }
-        }
-        tableView.reloadData()
-    }
-    
+    // ** To be deleted below code after adding page number
     /*
      override func scrollViewDidScroll(_ scrollView: UIScrollView) {
      let offset = scrollView.contentOffset.y
@@ -141,7 +135,7 @@ class ArtsTableViewController: UITableViewController {
      filterContentForSearchText(searchController.searchBar.text!)
      }
      }
-     */
+    
     // MARK: Data Manager
     func loadSegment(offset:Int, size:Int) {
         if (!self.isDataLoading) {
@@ -161,14 +155,14 @@ class ArtsTableViewController: UITableViewController {
                 self.MyFooterView.isHidden = true
             })
         }
-        
     }
+     */
     
     // MARK: - UITableViewDelegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
         //performSegue(withIdentifier: "toPinterestVC", sender: tableView.cellForRow(at: indexPath))
-        //performSegue(withIdentifier: "toDocentVC", sender: tableView.cellForRow(at: indexPath))
+        performSegue(withIdentifier: "toDocentVC", sender: tableView.cellForRow(at: indexPath))
     }
     
     // MARK: - Navigation
@@ -189,25 +183,37 @@ class ArtsTableViewController: UITableViewController {
             docentVC.selectedDescription = selectedItem.artDescription.text!
             docentVC.selectedImage = selectedItem.artImage.image
         }
- */
+         */
     }
     
-    // MARK: Utility
-    func getRandomNumberBetween (From: Int , To: Int) -> Int {
-        return From + Int(arc4random_uniform(UInt32(To - From + 1)))
+     func setupSearchBar() {
+         // Setup the Search Controller
+        searchController.searchBar.placeholder = "작품명 또는 작가명 검색"
+        searchController.searchBar.delegate = self
+        searchController.searchBar.text = searchWord
+        searchController.searchBar.autocapitalizationType = .none
+        searchController.searchBar.barTintColor = mainColor
+        searchController.searchBar.tintColor = backgroundColor
+        definesPresentationContext = true
+        searchController.dimsBackgroundDuringPresentation = false
+        self.tableView.tableHeaderView = searchController.searchBar
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    func updateSearchResults() {
+        searchResults = requestManager.searchResults
+        isDataLoading = false
     }
 }
 
 extension ArtsTableViewController: UISearchBarDelegate {
     // MARK: - UISearchBar Delegate
-    func searchBar(_ searchBar: UISearchBar) {
-        filterContentForSearchText(searchBar.text!)
-    }
-}
-
-extension ArtsTableViewController: UISearchResultsUpdating {
-    // MARK: - UISearchResultsUpdating Delegate
-    func updateSearchResults(for searchController: UISearchController) {
-        filterContentForSearchText(searchController.searchBar.text!)
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        requestManager.resetSearch()
+        updateSearchResults()
+        requestManager.searchArt(searchText: validatedText)
     }
 }

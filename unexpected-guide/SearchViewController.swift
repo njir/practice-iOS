@@ -11,8 +11,6 @@ import UIKit
 class SearchViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: - Outlets and Properties
-    let mainColor: UIColor = UIColor(red:0.29, green:0.09, blue:0.24, alpha:1.00)
-    let backgroundColor: UIColor = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.00)
     
     @IBOutlet weak var searchTxtFld: UITextField!
     @IBOutlet weak var searchBtn: UIButton!
