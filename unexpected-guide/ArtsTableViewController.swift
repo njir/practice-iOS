@@ -161,26 +161,16 @@ class ArtsTableViewController: UITableViewController {
     // MARK: - UITableViewDelegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
-        //performSegue(withIdentifier: "toPinterestVC", sender: tableView.cellForRow(at: indexPath))
         performSegue(withIdentifier: "toDocentVC", sender: tableView.cellForRow(at: indexPath))
     }
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        /*
-        if (segue.identifier == "toPinterestVC") {
-            let detailVC = segue.destination as! PhotoStreamViewController
-            let selectedItem = sender as! ArtResultTableViewCell
-            
-            detailVC.title = selectedItem.artTitle.text
-            detailVC.selectedName = selectedItem.artDescription.text!
-        }
-        */
         if (segue.identifier == "toDocentVC") {
-            let docentVC = segue.destination as! DocentCollectionViewController
+            let docentVC = segue.destination as! PostViewController
             let selectedItem = sender as! ArtsTableViewCell
             
-            docentVC.docentDescription = selectedItem.artDescription.text // test
+            docentVC.test = selectedItem.artDescription.text
         }
     }
     
@@ -191,7 +181,7 @@ class ArtsTableViewController: UITableViewController {
         searchController.searchBar.text = searchWord
         searchController.searchBar.autocapitalizationType = .none
        // searchController.searchBar.barTintColor = mainColor
-        searchController.searchBar.tintColor = backgroundColor
+       // searchController.searchBar.tintColor = backgroundColor
         definesPresentationContext = true
         searchController.dimsBackgroundDuringPresentation = false
         self.tableView.tableHeaderView = searchController.searchBar

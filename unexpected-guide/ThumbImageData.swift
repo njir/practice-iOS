@@ -10,10 +10,10 @@ import Foundation
 import ObjectMapper
 
 class ThumbImage: Mappable {
-    var imageId: Int!
-    var url: String!
-    var updatedAt: String!
-    var createdAt: String!
+    var imageId: Int?
+    var url: String?
+    var updatedAt: String?
+    var createdAt: String?
     
     required init?(map: Map) {
     }
