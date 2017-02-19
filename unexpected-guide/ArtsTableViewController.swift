@@ -175,15 +175,13 @@ class ArtsTableViewController: UITableViewController {
             detailVC.title = selectedItem.artTitle.text
             detailVC.selectedName = selectedItem.artDescription.text!
         }
+        */
         if (segue.identifier == "toDocentVC") {
-            let docentVC = segue.destination as! DocentTableViewController
-            let selectedItem = sender as! ArtResultTableViewCell
+            let docentVC = segue.destination as! DocentCollectionViewController
+            let selectedItem = sender as! ArtsTableViewCell
             
-            docentVC.selectedTitle = selectedItem.artTitle.text
-            docentVC.selectedDescription = selectedItem.artDescription.text!
-            docentVC.selectedImage = selectedItem.artImage.image
+            docentVC.docentDescription = selectedItem.artDescription.text // test
         }
-         */
     }
     
      func setupSearchBar() {
@@ -192,7 +190,7 @@ class ArtsTableViewController: UITableViewController {
         searchController.searchBar.delegate = self
         searchController.searchBar.text = searchWord
         searchController.searchBar.autocapitalizationType = .none
-        searchController.searchBar.barTintColor = mainColor
+       // searchController.searchBar.barTintColor = mainColor
         searchController.searchBar.tintColor = backgroundColor
         definesPresentationContext = true
         searchController.dimsBackgroundDuringPresentation = false
