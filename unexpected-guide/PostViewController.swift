@@ -1,9 +1,9 @@
 //
 //  PostViewController.swift
-//  StaggeredGridLayout
+//  unexpected-guide
 //
-//  Created by 秋本大介 on 2016/06/08.
-//  Copyright © 2016年 秋本大介. All rights reserved.
+//  Created by 진형탁 on 2017. 2. 18..
+//  Copyright © 2017년 fail-nicely. All rights reserved.
 //
 
 import UIKit
@@ -64,5 +64,22 @@ class PostViewController: UICollectionViewController, StaggeredGridLayoutDelegat
         ) -> CGFloat {
             return PostCell.bodyHeightWithText(self.posts[indexPath.item].text!, cellWidth:width)
     }
+    
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        self.performSegue(withIdentifier: "toPlayVC", sender: self)
+    }
+    
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "toPlayVC") {
+            let playVC = segue.destination as! PlayViewController
+            let selectedItem = sender as! PostCell
+            
+            playVC.test = selectedItem.commentLabel.text
+        }
+    }
+    
+    
 }
 

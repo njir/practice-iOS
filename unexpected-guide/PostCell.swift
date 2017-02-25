@@ -1,9 +1,9 @@
 //
 //  PostCell.swift
-//  StaggeredGridLayout
+//  unexpected-guide
 //
-//  Created by 秋本大介 on 2016/06/08.
-//  Copyright © 2016年 秋本大介. All rights reserved.
+//  Created by 진형탁 on 2017. 2. 18..
+//  Copyright © 2017년 fail-nicely. All rights reserved.
 //
 
 import UIKit
@@ -37,7 +37,7 @@ class PostCell: UICollectionViewCell {
     class func bodyHeightWithText(_ text : String,  cellWidth : CGFloat) -> CGFloat {
         let padding : CGFloat = 4.0
         let width : CGFloat = (cellWidth - padding * 2)
-        let font = UIFont.systemFont(ofSize: 8.5)
+        let font = UIFont.systemFont(ofSize: 9)
         let attributes = [NSFontAttributeName:font]
         let rect : CGRect = (text as NSString).boundingRect(with: CGSize(width: width, height: CGFloat.greatestFiniteMagnitude),
             options : NSStringDrawingOptions.usesLineFragmentOrigin,

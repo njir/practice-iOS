@@ -10,6 +10,11 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="IropkeBatangM.ttf">
+            <string>IropkeBatangM</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Search View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -23,55 +28,40 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="작품명 또는 작가명 검색" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yZB-2X-BdM">
-                                <rect key="frame" x="16" y="318" width="305" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="305" id="ega-02-xIL"/>
-                                </constraints>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="작품명 또는 작가명 검색" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="yZB-2X-BdM">
+                                <rect key="frame" x="16" y="318" width="343" height="30"/>
                                 <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="IropkeBatangM" family="Iropke Batang" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FcF-lF-SrB">
-                                <rect key="frame" x="329" y="318" width="30" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="30" id="LoK-Ss-Egg"/>
-                                    <constraint firstAttribute="height" constant="30" id="sEZ-mx-TDL"/>
-                                </constraints>
-                                <state key="normal" image="SearchIcon"/>
-                                <connections>
-                                    <action selector="pressSearchBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="paA-tN-6WX"/>
-                                </connections>
-                            </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LogoIcon" translatesAutoresizingMaskIntoConstraints="NO" id="aRT-cM-FmM">
-                                <rect key="frame" x="138" y="168" width="100" height="100"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="G84-iU-utd"/>
-                                    <constraint firstAttribute="height" constant="100" id="Wad-1V-yhI"/>
-                                </constraints>
-                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="뜻밖의, 가이드" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fKX-pZ-TMS" userLabel="LogoText">
+                                <rect key="frame" x="128.5" y="247" width="118.5" height="26"/>
+                                <fontDescription key="fontDescription" name="IropkeBatangM" family="Iropke Batang" pointSize="20"/>
+                                <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.97254901960784312" green="0.97254901960784312" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="FcF-lF-SrB" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="NEA-uV-Mer"/>
-                            <constraint firstItem="yZB-2X-BdM" firstAttribute="top" secondItem="FcF-lF-SrB" secondAttribute="top" id="Rcd-9V-ayT"/>
+                            <constraint firstItem="yZB-2X-BdM" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="Cba-jP-VLI"/>
+                            <constraint firstItem="yZB-2X-BdM" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="ERz-uG-hSP"/>
                             <constraint firstItem="yZB-2X-BdM" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="XHA-BU-YDY"/>
-                            <constraint firstItem="FcF-lF-SrB" firstAttribute="leading" secondItem="yZB-2X-BdM" secondAttribute="trailing" constant="8" symbolic="YES" id="cMg-je-DcL"/>
-                            <constraint firstItem="FcF-lF-SrB" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="pMc-rf-B5J"/>
-                            <constraint firstItem="aRT-cM-FmM" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="qz0-WH-UO2"/>
-                            <constraint firstItem="yZB-2X-BdM" firstAttribute="top" secondItem="aRT-cM-FmM" secondAttribute="bottom" constant="50" id="uRp-0c-KtD"/>
+                            <constraint firstItem="yZB-2X-BdM" firstAttribute="top" secondItem="fKX-pZ-TMS" secondAttribute="bottom" constant="45" id="a7m-nV-YaP"/>
+                            <constraint firstItem="fKX-pZ-TMS" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="pIX-ww-I8i"/>
+                            <constraint firstItem="yZB-2X-BdM" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="yiT-BD-lhM"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="aDx-ej-ekR"/>
+                    <navigationItem key="navigationItem" id="aDx-ej-ekR">
+                        <barButtonItem key="backBarButtonItem" title=" " id="H3R-Ya-wsJ"/>
+                    </navigationItem>
                     <connections>
-                        <outlet property="searchBtn" destination="FcF-lF-SrB" id="XqN-cv-MBE"/>
                         <outlet property="searchTxtFld" destination="yZB-2X-BdM" id="fuk-ST-5mY"/>
                         <segue destination="P2o-7b-fYd" kind="show" id="kZ7-Af-Xl0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1662.5" y="136.5"/>
+            <point key="canvasLocation" x="1661.5999999999999" y="136.28185907046478"/>
         </scene>
         <!--Arts Table View Controller-->
         <scene sceneID="1mp-Zn-4IX">
@@ -90,7 +80,6 @@
                                     <color key="color" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </activityIndicatorView>
                             </subviews>
-                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstItem="VT6-eb-B2G" firstAttribute="centerX" secondItem="gkI-eF-FtX" secondAttribute="centerX" id="DiS-rp-TkY"/>
                                 <constraint firstItem="VT6-eb-B2G" firstAttribute="centerY" secondItem="gkI-eF-FtX" secondAttribute="centerY" id="o5J-3E-xPG"/>
@@ -101,7 +90,7 @@
                                 <rect key="frame" x="0.0" y="22" width="375" height="106"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4ff-MQ-c40" id="xbF-dq-9Ra">
-                                    <rect key="frame" x="0.0" y="0.0" width="342" height="105.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="105"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="z7m-Od-2HR" userLabel="ArtImage">
@@ -115,15 +104,15 @@
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="27" id="aM4-OD-Zij"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" red="0.28627450980392155" green="0.086274509803921567" blue="0.23921568627450979" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="fontDescription" name="IropkeBatangM" family="Iropke Batang" pointSize="15"/>
+                                            <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                             <color key="shadowColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uYj-iM-xCC" userLabel="ArtDescription">
                                             <rect key="frame" x="116" y="52" width="218" height="45"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <fontDescription key="fontDescription" name="IropkeBatangM" family="Iropke Batang" pointSize="12"/>
+                                            <color key="textColor" red="0.67843137254901964" green="0.67843137254901964" blue="0.67843137254901964" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -152,7 +141,9 @@
                             <outlet property="delegate" destination="P2o-7b-fYd" id="qWr-oE-bYe"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="xfU-cp-5Fg" userLabel="Dummy Data"/>
+                    <navigationItem key="navigationItem" id="xfU-cp-5Fg" userLabel="Dummy Data">
+                        <barButtonItem key="backBarButtonItem" title=" " id="H8B-jo-vKh"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="MyFooterView" destination="gkI-eF-FtX" id="XXX-CO-FLG"/>
                         <segue destination="ImR-Sr-piq" kind="push" identifier="toDocentVC" id="nZJ-vD-1up"/>
@@ -167,7 +158,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="5D8-2S-ZUc" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="djh-fB-XDg">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="djh-fB-XDg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -300,14 +291,63 @@
                     <navigationItem key="navigationItem" id="S5Q-Wd-7YR">
                         <barButtonItem key="backBarButtonItem" title=" " id="cjJ-bW-arr"/>
                     </navigationItem>
+                    <connections>
+                        <segue destination="fJp-9f-z6l" kind="push" identifier="toPlayVC" id="4ZM-NP-uxR"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WGJ-po-k36" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3360.8000000000002" y="137.18140929535232"/>
         </scene>
+        <!--Play View Controller-->
+        <scene sceneID="Eer-YP-U2d">
+            <objects>
+                <viewController id="fJp-9f-z6l" userLabel="Play View Controller" customClass="PlayViewController" customModule="unexpected_guide" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="MEk-f8-ntx"/>
+                        <viewControllerLayoutGuide type="bottom" id="mjk-8D-uH1"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="2ne-DP-QtP">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3xg-7S-8cM">
+                                <rect key="frame" x="0.0" y="64" width="375" height="418"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1200-1200" translatesAutoresizingMaskIntoConstraints="NO" id="9UM-Qi-1zG">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="418"/>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="9UM-Qi-1zG" secondAttribute="bottom" id="0xp-ue-5Wg"/>
+                                    <constraint firstItem="9UM-Qi-1zG" firstAttribute="centerX" secondItem="3xg-7S-8cM" secondAttribute="centerX" id="WT6-z4-hwT"/>
+                                    <constraint firstAttribute="trailing" secondItem="9UM-Qi-1zG" secondAttribute="trailing" constant="135" id="n9u-QD-XEc"/>
+                                    <constraint firstItem="9UM-Qi-1zG" firstAttribute="centerY" secondItem="3xg-7S-8cM" secondAttribute="centerY" id="og8-Kx-Crj"/>
+                                    <constraint firstItem="9UM-Qi-1zG" firstAttribute="top" secondItem="3xg-7S-8cM" secondAttribute="top" id="uS0-fY-qTF"/>
+                                    <constraint firstItem="9UM-Qi-1zG" firstAttribute="leading" secondItem="3xg-7S-8cM" secondAttribute="leading" id="xnb-AN-O3U"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="3xg-7S-8cM" firstAttribute="top" secondItem="MEk-f8-ntx" secondAttribute="bottom" id="0jO-6n-HDV"/>
+                            <constraint firstAttribute="trailing" secondItem="3xg-7S-8cM" secondAttribute="trailing" id="J3A-XE-uW0"/>
+                            <constraint firstItem="3xg-7S-8cM" firstAttribute="leading" secondItem="2ne-DP-QtP" secondAttribute="leading" id="J3X-zJ-dTb"/>
+                            <constraint firstItem="mjk-8D-uH1" firstAttribute="top" secondItem="3xg-7S-8cM" secondAttribute="bottom" constant="185" id="d3j-gv-UlY"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="tTa-Vg-JGr"/>
+                    <connections>
+                        <outlet property="imageView" destination="9UM-Qi-1zG" id="Txy-ij-k87"/>
+                        <outlet property="scrollView" destination="3xg-7S-8cM" id="wfb-sx-xF4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Puf-Kz-lYg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4256.8000000000002" y="142.57871064467767"/>
+        </scene>
     </scenes>
     <resources>
-        <image name="LogoIcon" width="436" height="428"/>
-        <image name="SearchIcon" width="50" height="50"/>
+        <image name="1200-1200" width="1200" height="1200"/>
     </resources>
 </document>

@@ -53,4 +53,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 let mainColor: UIColor = UIColor(red:0.29, green:0.09, blue:0.24, alpha:1.00)
-let backgroundColor: UIColor = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.00)
+let backgroundColor: UIColor = UIColor(red:0.97, green:0.97, blue:0.97, alpha:1.00) // 씀 바탕색깔 desert storm
+let fontColor: UIColor = UIColor(red:0.20, green:0.20, blue:0.20, alpha:1.00) //  폰트 색깔 mine shaft

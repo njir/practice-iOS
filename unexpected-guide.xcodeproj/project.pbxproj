@@ -32,6 +32,8 @@
 		8461BB7D1E5964A5009B7B31 /* StaggeredGridLayoutAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8461BB7C1E5964A5009B7B31 /* StaggeredGridLayoutAttributes.swift */; };
 		846811131E5483E700570090 /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846811121E5483E700570090 /* RequestManager.swift */; };
 		847716501E4FE29A00D9850F /* ArtData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8477164F1E4FE29A00D9850F /* ArtData.swift */; };
+		84D15F861E5DB90B007D3577 /* IropkeBatangM.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84D15F851E5DB90B007D3577 /* IropkeBatangM.ttf */; };
+		84F8EFC31E5F15E1003BAAD0 /* PlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F8EFC21E5F15E1003BAAD0 /* PlayViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +78,8 @@
 		8461BB7C1E5964A5009B7B31 /* StaggeredGridLayoutAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaggeredGridLayoutAttributes.swift; sourceTree = "<group>"; };
 		846811121E5483E700570090 /* RequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
 		8477164F1E4FE29A00D9850F /* ArtData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArtData.swift; sourceTree = "<group>"; };
+		84D15F851E5DB90B007D3577 /* IropkeBatangM.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = IropkeBatangM.ttf; sourceTree = "<group>"; };
+		84F8EFC21E5F15E1003BAAD0 /* PlayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayViewController.swift; sourceTree = "<group>"; };
 		8817EA24B4BB39F58DA7E149 /* Pods-unexpected-guideTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-unexpected-guideTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-unexpected-guideTests/Pods-unexpected-guideTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B93C3635FDD80D680F052C8B /* Pods-unexpected-guide.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-unexpected-guide.release.xcconfig"; path = "Pods/Target Support Files/Pods-unexpected-guide/Pods-unexpected-guide.release.xcconfig"; sourceTree = "<group>"; };
 		D091273F0AE6D845F78A7E7A /* Pods_unexpected_guideTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_unexpected_guideTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -162,6 +166,7 @@
 				842DF99A1E4F225E00A6DE6E /* SearchViewController.swift */,
 				842DF9971E4F225E00A6DE6E /* ArtsTableViewCell.swift */,
 				842DF9951E4F225100A6DE6E /* ArtsTableViewController.swift */,
+				84F8EFC21E5F15E1003BAAD0 /* PlayViewController.swift */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -180,6 +185,7 @@
 		842DF9A31E4F237800A6DE6E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				84D15F851E5DB90B007D3577 /* IropkeBatangM.ttf */,
 				339BEE9D725A512C9F39D6C1 /* Assets.xcassets */,
 			);
 			name = Resources;
@@ -330,6 +336,7 @@
 				339BE4256061F71DF4890957 /* LaunchScreen.storyboard in Resources */,
 				339BEA61E82F532FE145EF47 /* Main.storyboard in Resources */,
 				8461BB781E595227009B7B31 /* Posts.json in Resources */,
+				84D15F861E5DB90B007D3577 /* IropkeBatangM.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -456,6 +463,7 @@
 				842DF99D1E4F225E00A6DE6E /* DataManager.swift in Sources */,
 				842DF99E1E4F225E00A6DE6E /* MyItem.swift in Sources */,
 				8428E89D1E532F9100CB1755 /* ThumbImageData.swift in Sources */,
+				84F8EFC31E5F15E1003BAAD0 /* PlayViewController.swift in Sources */,
 				8428E89F1E53303B00CB1755 /* ImageData.swift in Sources */,
 				8428E89B1E532DF200CB1755 /* ArtistData.swift in Sources */,
 				846811131E5483E700570090 /* RequestManager.swift in Sources */,
