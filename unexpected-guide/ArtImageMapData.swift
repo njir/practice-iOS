@@ -10,11 +10,11 @@ import Foundation
 import ObjectMapper
 
 class ArtImageMap: Mappable {
-    var artImageMapId: Int!
-    var artId: Int!
-    var imageId: Int!
-    var updatedAt: String!
-    var createdAt: String!
+    var artImageMapId: Int?
+    var artId: Int?
+    var imageId: Int?
+    var updatedAt: String?
+    var createdAt: String?
     
     required init?(map: Map) {
     }

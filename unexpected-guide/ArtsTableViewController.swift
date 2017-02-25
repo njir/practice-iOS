@@ -43,6 +43,8 @@ class ArtsTableViewController: UITableViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(ArtsTableViewController.updateSearchResults), name: NSNotification.Name(rawValue: "searchResultsUpdated"), object: nil)
         
+        self.view.backgroundColor = backgroundColor
+        
         // Get data with search word
         requestManager.searchArt(searchText: self.searchWord!)
         self.MyFooterView.isHidden = true
@@ -113,7 +115,7 @@ class ArtsTableViewController: UITableViewController {
         let item: ArtData
         item = searchResults[indexPath.row]
         
-        ImageLoader.sharedLoader.imageForUrl(urlString: item.ThumbImage.url, completionHandler:{(image: UIImage?, url: String) in
+        ImageLoader.sharedLoader.imageForUrl(urlString: (item.ThumbImage?.url!)!, completionHandler:{(image: UIImage?, url: String) in
             cell.artImage.image = image
         })
         cell.artTitle.text = item.koreanName
@@ -161,41 +163,31 @@ class ArtsTableViewController: UITableViewController {
     // MARK: - UITableViewDelegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
-        //performSegue(withIdentifier: "toPinterestVC", sender: tableView.cellForRow(at: indexPath))
         performSegue(withIdentifier: "toDocentVC", sender: tableView.cellForRow(at: indexPath))
     }
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        /*
-        if (segue.identifier == "toPinterestVC") {
-            let detailVC = segue.destination as! PhotoStreamViewController
-            let selectedItem = sender as! ArtResultTableViewCell
-            
-            detailVC.title = selectedItem.artTitle.text
-            detailVC.selectedName = selectedItem.artDescription.text!
-        }
         if (segue.identifier == "toDocentVC") {
-            let docentVC = segue.destination as! DocentTableViewController
-            let selectedItem = sender as! ArtResultTableViewCell
+            let docentVC = segue.destination as! PostViewController
+            let selectedItem = sender as! ArtsTableViewCell
             
-            docentVC.selectedTitle = selectedItem.artTitle.text
-            docentVC.selectedDescription = selectedItem.artDescription.text!
-            docentVC.selectedImage = selectedItem.artImage.image
+            docentVC.test = selectedItem.artDescription.text
         }
-         */
     }
     
-     func setupSearchBar() {
+    func setupSearchBar() {
          // Setup the Search Controller
         searchController.searchBar.placeholder = "작품명 또는 작가명 검색"
         searchController.searchBar.delegate = self
         searchController.searchBar.text = searchWord
         searchController.searchBar.autocapitalizationType = .none
-        searchController.searchBar.barTintColor = mainColor
-        searchController.searchBar.tintColor = backgroundColor
+        searchController.searchBar.barTintColor = backgroundColor
+        searchController.searchBar.tintColor = fontColor
         definesPresentationContext = true
         searchController.dimsBackgroundDuringPresentation = false
+        searchController.searchBar.layer.borderWidth = 1
+        searchController.searchBar.layer.borderColor = backgroundColor.cgColor
         self.tableView.tableHeaderView = searchController.searchBar
     }
     

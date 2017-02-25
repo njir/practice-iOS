@@ -10,17 +10,17 @@ import Foundation
 import ObjectMapper
 
 class ArtData: Mappable {
-    var artId: Int!
-    var artistId: Int!
-    var thumbImageId: Int!
-    var koreanName: String!
-    var englishName: String!
-    var description: String!
-    var updatedAt: String!
-    var createdAt: String!
-    var Artist: Artist!
-    var ThumbImage: ThumbImage!
-    var Images: [Image]!
+    var artId: Int?
+    var artistId: Int?
+    var thumbImageId: Int?
+    var koreanName: String?
+    var englishName: String?
+    var description: String?
+    var updatedAt: String?
+    var createdAt: String?
+    var Artist: Artist?
+    var ThumbImage: ThumbImage?
+    var Images: [Image]?
     
     required init?(map: Map) {
     }

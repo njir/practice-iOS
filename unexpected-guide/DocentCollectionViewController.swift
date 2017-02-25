@@ -11,6 +11,8 @@ import UIKit
 private let reuseIdentifier = "DocentCell"
 
 class DocentCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+    var docentDescription: String!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -18,7 +20,7 @@ class DocentCollectionViewController: UICollectionViewController, UICollectionVi
         // self.clearsSelectionOnViewWillAppear = false
 
         // Register cell classes
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        //self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
         // Do any additional setup after loading the view.
     }

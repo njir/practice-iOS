@@ -24,10 +24,16 @@
 		842DF99D1E4F225E00A6DE6E /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842DF9981E4F225E00A6DE6E /* DataManager.swift */; };
 		842DF99E1E4F225E00A6DE6E /* MyItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842DF9991E4F225E00A6DE6E /* MyItem.swift */; };
 		842DF99F1E4F225E00A6DE6E /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842DF99A1E4F225E00A6DE6E /* SearchViewController.swift */; };
+		8461BB6E1E595211009B7B31 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8461BB6D1E595211009B7B31 /* Post.swift */; };
+		8461BB721E595217009B7B31 /* StaggeredGridLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8461BB6F1E595217009B7B31 /* StaggeredGridLayout.swift */; };
+		8461BB741E595217009B7B31 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8461BB711E595217009B7B31 /* PostCell.swift */; };
+		8461BB761E59521C009B7B31 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8461BB751E59521C009B7B31 /* PostViewController.swift */; };
+		8461BB781E595227009B7B31 /* Posts.json in Resources */ = {isa = PBXBuildFile; fileRef = 8461BB771E595227009B7B31 /* Posts.json */; };
+		8461BB7D1E5964A5009B7B31 /* StaggeredGridLayoutAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8461BB7C1E5964A5009B7B31 /* StaggeredGridLayoutAttributes.swift */; };
 		846811131E5483E700570090 /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846811121E5483E700570090 /* RequestManager.swift */; };
-		846811151E54911500570090 /* DocentCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846811141E54911500570090 /* DocentCollectionViewController.swift */; };
-		846811171E54920F00570090 /* DocentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846811161E54920F00570090 /* DocentCollectionViewCell.swift */; };
 		847716501E4FE29A00D9850F /* ArtData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8477164F1E4FE29A00D9850F /* ArtData.swift */; };
+		84D15F861E5DB90B007D3577 /* IropkeBatangM.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84D15F851E5DB90B007D3577 /* IropkeBatangM.ttf */; };
+		84F8EFC31E5F15E1003BAAD0 /* PlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F8EFC21E5F15E1003BAAD0 /* PlayViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,10 +70,16 @@
 		842DF9991E4F225E00A6DE6E /* MyItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyItem.swift; sourceTree = "<group>"; };
 		842DF99A1E4F225E00A6DE6E /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		842DF9A41E4F249400A6DE6E /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "Pods/../build/Debug-iphoneos/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
+		8461BB6D1E595211009B7B31 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		8461BB6F1E595217009B7B31 /* StaggeredGridLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaggeredGridLayout.swift; sourceTree = "<group>"; };
+		8461BB711E595217009B7B31 /* PostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
+		8461BB751E59521C009B7B31 /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
+		8461BB771E595227009B7B31 /* Posts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Posts.json; sourceTree = "<group>"; };
+		8461BB7C1E5964A5009B7B31 /* StaggeredGridLayoutAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaggeredGridLayoutAttributes.swift; sourceTree = "<group>"; };
 		846811121E5483E700570090 /* RequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
-		846811141E54911500570090 /* DocentCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocentCollectionViewController.swift; sourceTree = "<group>"; };
-		846811161E54920F00570090 /* DocentCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocentCollectionViewCell.swift; sourceTree = "<group>"; };
 		8477164F1E4FE29A00D9850F /* ArtData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArtData.swift; sourceTree = "<group>"; };
+		84D15F851E5DB90B007D3577 /* IropkeBatangM.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = IropkeBatangM.ttf; sourceTree = "<group>"; };
+		84F8EFC21E5F15E1003BAAD0 /* PlayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayViewController.swift; sourceTree = "<group>"; };
 		8817EA24B4BB39F58DA7E149 /* Pods-unexpected-guideTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-unexpected-guideTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-unexpected-guideTests/Pods-unexpected-guideTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B93C3635FDD80D680F052C8B /* Pods-unexpected-guide.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-unexpected-guide.release.xcconfig"; path = "Pods/Target Support Files/Pods-unexpected-guide/Pods-unexpected-guide.release.xcconfig"; sourceTree = "<group>"; };
 		D091273F0AE6D845F78A7E7A /* Pods_unexpected_guideTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_unexpected_guideTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -111,6 +123,7 @@
 				842DF9A21E4F236900A6DE6E /* Utils */,
 				8477164E1E4FE27A00D9850F /* Model */,
 				842DF9A11E4F234900A6DE6E /* ViewController */,
+				8461BB6C1E5951F3009B7B31 /* ForColleoctionView */,
 				339BE86DA80B4016E3DED1FD /* Info.plist */,
 				339BE772776D31346A4A9E5A /* Main.storyboard */,
 			);
@@ -151,10 +164,9 @@
 			isa = PBXGroup;
 			children = (
 				842DF99A1E4F225E00A6DE6E /* SearchViewController.swift */,
-				842DF9951E4F225100A6DE6E /* ArtsTableViewController.swift */,
 				842DF9971E4F225E00A6DE6E /* ArtsTableViewCell.swift */,
-				846811141E54911500570090 /* DocentCollectionViewController.swift */,
-				846811161E54920F00570090 /* DocentCollectionViewCell.swift */,
+				842DF9951E4F225100A6DE6E /* ArtsTableViewController.swift */,
+				84F8EFC21E5F15E1003BAAD0 /* PlayViewController.swift */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -173,9 +185,47 @@
 		842DF9A31E4F237800A6DE6E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				84D15F851E5DB90B007D3577 /* IropkeBatangM.ttf */,
 				339BEE9D725A512C9F39D6C1 /* Assets.xcassets */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		8461BB6C1E5951F3009B7B31 /* ForColleoctionView */ = {
+			isa = PBXGroup;
+			children = (
+				8461BB791E595231009B7B31 /* Models */,
+				8461BB7A1E59523B009B7B31 /* Views */,
+				8461BB7B1E59524C009B7B31 /* Controllers */,
+				8461BB771E595227009B7B31 /* Posts.json */,
+			);
+			name = ForColleoctionView;
+			sourceTree = "<group>";
+		};
+		8461BB791E595231009B7B31 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8461BB6D1E595211009B7B31 /* Post.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		8461BB7A1E59523B009B7B31 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8461BB7C1E5964A5009B7B31 /* StaggeredGridLayoutAttributes.swift */,
+				8461BB6F1E595217009B7B31 /* StaggeredGridLayout.swift */,
+				8461BB711E595217009B7B31 /* PostCell.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		8461BB7B1E59524C009B7B31 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				8461BB751E59521C009B7B31 /* PostViewController.swift */,
+			);
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 		8477164E1E4FE27A00D9850F /* Model */ = {
@@ -285,6 +335,8 @@
 				339BEA3410EFC5F30705B8F3 /* Assets.xcassets in Resources */,
 				339BE4256061F71DF4890957 /* LaunchScreen.storyboard in Resources */,
 				339BEA61E82F532FE145EF47 /* Main.storyboard in Resources */,
+				8461BB781E595227009B7B31 /* Posts.json in Resources */,
+				84D15F861E5DB90B007D3577 /* IropkeBatangM.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -404,20 +456,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				842DF99F1E4F225E00A6DE6E /* SearchViewController.swift in Sources */,
-				846811151E54911500570090 /* DocentCollectionViewController.swift in Sources */,
 				847716501E4FE29A00D9850F /* ArtData.swift in Sources */,
 				8428E8A11E53306600CB1755 /* ArtImageMapData.swift in Sources */,
+				8461BB761E59521C009B7B31 /* PostViewController.swift in Sources */,
 				339BEC7EEA0449467690F9E1 /* AppDelegate.swift in Sources */,
 				842DF99D1E4F225E00A6DE6E /* DataManager.swift in Sources */,
 				842DF99E1E4F225E00A6DE6E /* MyItem.swift in Sources */,
 				8428E89D1E532F9100CB1755 /* ThumbImageData.swift in Sources */,
+				84F8EFC31E5F15E1003BAAD0 /* PlayViewController.swift in Sources */,
 				8428E89F1E53303B00CB1755 /* ImageData.swift in Sources */,
 				8428E89B1E532DF200CB1755 /* ArtistData.swift in Sources */,
 				846811131E5483E700570090 /* RequestManager.swift in Sources */,
+				8461BB6E1E595211009B7B31 /* Post.swift in Sources */,
+				8461BB741E595217009B7B31 /* PostCell.swift in Sources */,
 				842DF99C1E4F225E00A6DE6E /* ArtsTableViewCell.swift in Sources */,
+				8461BB7D1E5964A5009B7B31 /* StaggeredGridLayoutAttributes.swift in Sources */,
 				842DF9961E4F225100A6DE6E /* ArtsTableViewController.swift in Sources */,
-				846811171E54920F00570090 /* DocentCollectionViewCell.swift in Sources */,
 				8428E8A31E5336E400CB1755 /* ImageLoader.swift in Sources */,
+				8461BB721E595217009B7B31 /* StaggeredGridLayout.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

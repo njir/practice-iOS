@@ -13,7 +13,6 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
     // MARK: - Outlets and Properties
     
     @IBOutlet weak var searchTxtFld: UITextField!
-    @IBOutlet weak var searchBtn: UIButton!
 
     // MARK: - Life Cycle
     
@@ -30,17 +29,6 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         searchTxtFld.resignFirstResponder()
         self.view.endEditing(true)
-    }
-    
-    // MARK: - IBAction
-    
-    @IBAction func pressSearchBtn(_ sender: Any) {
-        let newText: String = searchTxtFld.text!
-        
-        guard !newText.isEmpty else {
-            return
-        }
-        searchWord(text: newText)
     }
     
     // MARK: - Implement delegates function

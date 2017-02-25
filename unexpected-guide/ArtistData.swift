@@ -10,15 +10,15 @@ import Foundation
 import ObjectMapper
 
 class Artist: Mappable {
-    var artistId: Int!
-    var imageId: Int!
-    var countryId: String!
-    var koreanName: String!
-    var englishName: String!
-    var birthday: String!
-    var deathday: String!
-    var updatedAt: String!
-    var createdAt: String!
+    var artistId: Int?
+    var imageId: Int?
+    var countryId: String?
+    var koreanName: String?
+    var englishName: String?
+    var birthday: String?
+    var deathday: String?
+    var updatedAt: String?
+    var createdAt: String?
     
     required init?(map: Map) {
     }

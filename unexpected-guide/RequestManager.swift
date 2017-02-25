@@ -25,7 +25,7 @@ class RequestManager {
         let url: String = "http://localhost:3000/api/art?keyword=\(searchText)" // TODO: add pageNumber
         print(url)
         
-        Alamofire.request(url).responseArray { (response: DataResponse< [ArtData] >) in
+        Alamofire.request(url).responseArray { (response: DataResponse<[ArtData]>) in
             let artDataArray = response.result.value
             if let artDataArray = artDataArray {
                 self.searchResults += artDataArray
