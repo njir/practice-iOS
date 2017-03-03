@@ -19,6 +19,8 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.searchTxtFld.delegate = self
+        self.view.backgroundColor = backgroundColor
+        setDefaultTextfieldUI()
     }
 
     override func didReceiveMemoryWarning() {
@@ -26,7 +28,15 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
         self.searchTxtFld.text = ""
     }
     
+    func setDefaultTextfieldUI() {
+        self.searchTxtFld.layer.borderColor = textfieldColor.cgColor
+        self.searchTxtFld.backgroundColor = textfieldColor
+        self.searchTxtFld.layer.cornerRadius = 5.0
+        self.searchTxtFld.layer.borderWidth = 2.0
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        setDefaultTextfieldUI()
         searchTxtFld.resignFirstResponder()
         self.view.endEditing(true)
     }
@@ -45,15 +55,11 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        textField.text = ""
-        searchTxtFld.layer.borderColor = mainColor.cgColor
-        searchTxtFld.layer.borderWidth = 1.0
+        self.searchTxtFld.layer.borderColor = mainColor.cgColor
+        self.searchTxtFld.layer.borderWidth = 1.0
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        let defaultBorderColor: UIColor = UIColor(red:0.79, green:0.79, blue:0.79, alpha:1.00)
-        searchTxtFld.layer.borderColor = defaultBorderColor.cgColor
-        searchTxtFld.layer.borderWidth = 1.0
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -71,5 +77,4 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
         artsTableVC.searchWord = text
         self.navigationController?.pushViewController(artsTableVC, animated: true)
     }
-
 }

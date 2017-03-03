@@ -27,8 +27,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="뜻밖의, 가이드" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IuJ-sz-zcC" userLabel="LogoText">
-                                <rect key="frame" x="122.5" y="319" width="130" height="29"/>
-                                <fontDescription key="fontDescription" name="IropkeBatangM" family="Iropke Batang" pointSize="22"/>
+                                <rect key="frame" x="129" y="320.5" width="118.5" height="26"/>
+                                <fontDescription key="fontDescription" name="IropkeBatangM" family="Iropke Batang" pointSize="20"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>

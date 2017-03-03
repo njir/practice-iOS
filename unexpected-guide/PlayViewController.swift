@@ -7,39 +7,119 @@
 //
 
 import UIKit
+import ImageSlideshow
+import AVFoundation
 
 class PlayViewController: UIViewController, UIScrollViewDelegate {
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var imageView: UIImageView!
-
-    var test: String?
+    var imageView: UIImageView!
+    var voiceUrl: String?
+    var isPlaying: Bool = false
+    var player = AVPlayer()
+    // your player.currentItem.status
+    var playerCurrentItemStatus: AVPlayerItemStatus = .unknown
+    let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
+    
+    //var test: String?
+    
+    @IBOutlet weak var slideShow: ImageSlideshow!
+    var imageList: [ImageSource] = []
+    
+    @IBOutlet weak var progressSlider: UISlider!
+    @IBOutlet weak var currentTime: UILabel!
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+         // Show indicatior
+        activityIndicator.center = view.center
+        activityIndicator.startAnimating()
+        view.addSubview(activityIndicator)
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        self.scrollView.minimumZoomScale = 1.0
-        self.scrollView.maximumZoomScale = 6.0
+        
+        configureView()
+        setSlideShow()
+        
+        if playerCurrentItemStatus == .readyToPlay {
+            activityIndicator.stopAnimating()
+        }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView?
-    {
-        return self.imageView
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        isPlaying = false
+        
+        player.pause()
+        player.replaceCurrentItem(with: nil)
+        // to process when user clicked back button
+        if (self.isMovingFromParentViewController){
+            //
+        }
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    @IBAction func pushPlayBtn(_ sender: Any) {
+        isPlaying = true
+        player.play()
     }
-    */
-
+    @IBAction func pushBackwardBtn(_ sender: Any) {
+        var currentTime: Float64 = CMTimeGetSeconds(player.currentTime())
+        currentTime -= 10.0
+        player.seek(to: CMTimeMakeWithSeconds(currentTime, Int32(NSEC_PER_SEC)), toleranceBefore: kCMTimeZero, toleranceAfter: kCMTimeZero)
+        
+        updateAudioProgressView()
+    }
+    
+    @IBAction func pushForwardBtn(_ sender: Any) {
+         var currentTime: Float64 = CMTimeGetSeconds(player.currentTime())
+        currentTime += 10.0
+        player.seek(to: CMTimeMakeWithSeconds(currentTime, Int32(NSEC_PER_SEC)), toleranceBefore: kCMTimeZero, toleranceAfter: kCMTimeZero)
+        updateAudioProgressView()
+    }
+    
+    func setSlideShow() {
+        slideShow.backgroundColor = UIColor.white
+        slideShow.slideshowInterval = 0
+        slideShow.pageControlPosition = PageControlPosition.underScrollView
+        slideShow.pageControl.currentPageIndicatorTintColor = UIColor.lightGray
+        slideShow.pageControl.pageIndicatorTintColor = UIColor.black
+        slideShow.contentScaleMode = UIViewContentMode.scaleAspectFill
+        slideShow.currentPageChanged = { page in
+            print("current page:", page)
+        }
+        
+        // try out other sources such as `afNetworkingSource`, `alamofireSource` or `sdWebImageSource` or `kingfisherSource`
+        slideShow.setImageInputs(imageList)
+    }
+    
+    func configureView() {
+        let playerItem = AVPlayerItem(url: NSURL(string: voiceUrl!) as! URL)
+        player = AVPlayer(playerItem: playerItem)
+        player.rate = 1.0
+        
+        Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateAudioProgressView), userInfo: nil, repeats: true)
+        let currentTime = Float(CMTimeGetSeconds(player.currentTime()))
+        let duration = Float(CMTimeGetSeconds((player.currentItem?.asset.duration)!))
+        // Update progress
+        progressSlider.setValue(Float(currentTime/duration), animated: false)
+        player.pause()
+        playerCurrentItemStatus = playerItem.status
+    }
+    
+    func updateAudioProgressView() {
+        if isPlaying {
+            let currentTime = Float(CMTimeGetSeconds(player.currentTime()))
+            let duration = Float(CMTimeGetSeconds((player.currentItem?.asset.duration)!))
+            // Update progress
+            progressSlider.setValue(Float(currentTime/duration), animated: true)
+        }
+    }
 }

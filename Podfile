@@ -8,15 +8,13 @@ target 'unexpected-guide' do
     pod 'ObjectMapper', '~> 2.2'
     pod 'AlamofireObjectMapper', '~> 4.0'
     pod 'SwiftyJSON'
+    pod 'ImageSlideshow', '~> 1.1.0'
 
   # Pods for unexpected-guide
 
   target 'unexpected-guideTests' do
     inherit! :search_paths
     # Pods for testing
-    pod 'Alamofire', '~> 4.3'
-    pod 'AlamofireObjectMapper', '~> 4.0'
-    pod 'SwiftyJSON'
   end
 
 end
