@@ -22,8 +22,6 @@ class ArtsTableViewController: UITableViewController {
     var isDataLoading: Bool = false
     var isViewLoading: Bool = true
     
-    
-    let baseUrl: String = "http://localhost:3000/api/art?keyword="
     let requestManager = RequestManager()
     var searchResults = [ArtData]() {
         didSet {
@@ -41,7 +39,7 @@ class ArtsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(ArtsTableViewController.updateSearchResults), name: NSNotification.Name(rawValue: "searchResultsUpdated"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ArtsTableViewController.updateSearchResults), name: NSNotification.Name(rawValue: "artResultsUpdated"), object: nil)
         
         self.view.backgroundColor = backgroundColor
         
@@ -57,7 +55,9 @@ class ArtsTableViewController: UITableViewController {
         // Setup searchController and searchBar
         setupSearchBar()
     }
-   
+    
+    override func viewDidDisappear(_ animated: Bool) {
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -100,6 +100,10 @@ class ArtsTableViewController: UITableViewController {
         return numOfSections
     }
     
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.backgroundColor = backgroundColor
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return searchResults.count
     }
@@ -115,11 +119,17 @@ class ArtsTableViewController: UITableViewController {
         let item: ArtData
         item = searchResults[indexPath.row]
         
-        ImageLoader.sharedLoader.imageForUrl(urlString: (item.ThumbImage?.url!)!, completionHandler:{(image: UIImage?, url: String) in
+        ImageLoader.sharedLoader.imageForUrl(urlString: (item.thumbImage?.url!)!, completionHandler:{(image: UIImage?, url: String) in
             cell.artImage.image = image
         })
         cell.artTitle.text = item.koreanName
-        cell.artDescription.text = item.description
+        cell.artEnglishTitle.text = item.englishName
+        cell.artist.text = item.artist?.koreanName
+        cell.artistEnglish.text = item.artist?.englishName
+        
+        cell.artId = item.artId
+        
+       
         
         return cell
     }
@@ -163,16 +173,30 @@ class ArtsTableViewController: UITableViewController {
     // MARK: - UITableViewDelegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
-        performSegue(withIdentifier: "toDocentVC", sender: tableView.cellForRow(at: indexPath))
+        performSegue(withIdentifier: "toVoiceCollectionVC", sender: tableView.cellForRow(at: indexPath))
     }
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "toDocentVC") {
-            let docentVC = segue.destination as! PostViewController
+        if (segue.identifier == "toVoiceCollectionVC") {
+            let voiceCollectionVC = segue.destination as! PostViewController
             let selectedItem = sender as! ArtsTableViewCell
             
-            docentVC.test = selectedItem.artDescription.text
+            voiceCollectionVC.artId = selectedItem.artId
+            // to add image list to play view controller
+            var filtered = searchResults.filter({$0.artId == selectedItem.artId})
+            if let thumbImage = filtered[0].thumbImage {
+                ImageLoader.sharedLoader.imageForUrl(urlString: (thumbImage.url!), completionHandler:{(image: UIImage?, url: String) in
+                    voiceCollectionVC.thumbImage = image
+                })
+            }
+            if let images = filtered[0].images {
+                for image in images {
+                    ImageLoader.sharedLoader.imageForUrl(urlString: image.url!, completionHandler:{(image: UIImage?, url: String) in
+                    voiceCollectionVC.imageList.append(image)
+                    })
+                }
+            }
         }
     }
     
@@ -184,10 +208,32 @@ class ArtsTableViewController: UITableViewController {
         searchController.searchBar.autocapitalizationType = .none
         searchController.searchBar.barTintColor = backgroundColor
         searchController.searchBar.tintColor = fontColor
+        searchController.searchBar.backgroundColor = textfieldColor
         definesPresentationContext = true
         searchController.dimsBackgroundDuringPresentation = false
         searchController.searchBar.layer.borderWidth = 1
         searchController.searchBar.layer.borderColor = backgroundColor.cgColor
+        searchController.searchBar.layer.backgroundColor = textfieldColor.cgColor
+        searchController.searchBar.layer.cornerRadius = 5.0
+        searchController.searchBar.layer.borderWidth = 2.0
+        
+        if let textField = searchController.searchBar.value(forKey: "searchField") as? UITextField,
+            let iconView = textField.leftView as? UIImageView {
+            
+            textField.font = UIFont(name: "Iropke Batang", size: 13)
+            iconView.image = iconView.image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+            iconView.tintColor = fontColor
+        }
+        
+        // set background color
+        for view in searchController.searchBar.subviews {
+            for subView in view.subviews {
+                if subView.isKind(of: UITextField.self) {
+                    subView.backgroundColor = textfieldColor
+                }
+            }
+        }
+        
         self.tableView.tableHeaderView = searchController.searchBar
     }
     
@@ -196,7 +242,7 @@ class ArtsTableViewController: UITableViewController {
     }
     
     func updateSearchResults() {
-        searchResults = requestManager.searchResults
+        searchResults = requestManager.artResults
         isDataLoading = false
     }
 }
@@ -207,5 +253,21 @@ extension ArtsTableViewController: UISearchBarDelegate {
         requestManager.resetSearch()
         updateSearchResults()
         requestManager.searchArt(searchText: validatedText)
+    }
+    
+    // set UI
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        if let textField = searchBar.value(forKey: "searchField") as? UITextField {
+            textField.layer.borderColor = mainColor.cgColor
+            textField.layer.borderWidth = 1.0
+            textField.layer.cornerRadius = 5.0
+        }
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        if let textField = searchBar.value(forKey: "searchField") as? UITextField {
+            textField.layer.borderColor = textfieldColor.cgColor
+            textField.layer.borderWidth = 1.0
+        }
     }
 }

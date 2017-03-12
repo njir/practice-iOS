@@ -82,14 +82,13 @@ class StaggeredGridLayout: UICollectionViewLayout {
         }
 
         for item in 0..<self.collectionView!.numberOfItems(inSection: 0) {
-            let indexPath : IndexPath = IndexPath(row: item, section: 0)
+            let indexPath: IndexPath = IndexPath(row: item, section: 0)
 
-            let profileViewHeight : CGFloat  = self.delegate.heightForProfileViewAtIndexPath(self.collectionView!, indexPath: indexPath, width: cellWidth)
-            
-            let bodyHeight : CGFloat  = self.delegate.heightForBodyAtIndexPath(self.collectionView!, indexPath: indexPath, width: cellWidth)
-            let cellHeight : CGFloat  = profileViewHeight + bodyHeight;
+            let profileViewHeight: CGFloat = self.delegate.heightForProfileViewAtIndexPath(self.collectionView!, indexPath: indexPath, width: cellWidth)
+            let bodyHeight: CGFloat = self.delegate.heightForBodyAtIndexPath(self.collectionView!, indexPath: indexPath, width: cellWidth)
+            let cellHeight: CGFloat = profileViewHeight + bodyHeight;
 
-            let cellFrame : CGRect = CGRect(x: cellOriginXList[column],
+            let cellFrame: CGRect = CGRect(x: cellOriginXList[column],
                 y: currentCellOriginYList[column],
                 width: cellWidth,
                 height: cellHeight);
@@ -116,6 +115,4 @@ class StaggeredGridLayout: UICollectionViewLayout {
             column = nextColumn;
         }
     }
-    
-   
 }

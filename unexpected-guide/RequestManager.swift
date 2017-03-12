@@ -11,25 +11,26 @@ import Alamofire
 import AlamofireObjectMapper
 
 class RequestManager {
-    var searchResults = [ArtData]()
+    var artResults = [ArtData]()
+    var voiceResults = [VoiceData]()
     var pageNumber = 1
     var pageString: String {
         if pageNumber == 1 {
-            return ""
+            return "page=1"
         } else {
-            return "page=\(pageNumber)&"
+            return "page=\(pageNumber)"
         }
     }
     
     func searchArt(searchText: String) {
-        let url: String = "http://localhost:3000/api/art?keyword=\(searchText)" // TODO: add pageNumber
+        let url: String = "http://api-dev.failnicely.com:3000/api/art?keyword=\(searchText)&" + pageString // TODO: add pageNumber
         print(url)
         
         Alamofire.request(url).responseArray { (response: DataResponse<[ArtData]>) in
             let artDataArray = response.result.value
             if let artDataArray = artDataArray {
-                self.searchResults += artDataArray
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "searchResultsUpdated"), object: nil)
+                self.artResults += artDataArray
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "artResultsUpdated"), object: nil)
             }
         }
     }
@@ -40,6 +41,21 @@ class RequestManager {
     }
     
     func resetSearch() {
-        searchResults.removeAll()
+        artResults.removeAll()
+    }
+    
+    
+    // Search Voie
+    func searchVoice(artId: Int) {
+        let url: String = "http://api-dev.failnicely.com:3000/api/voice/art/\(artId)?" + pageString // TODO: add pageNumber
+        print("voice:", url)
+        
+        Alamofire.request(url).responseArray { (response: DataResponse<[VoiceData]>) in
+            let voiceDataArray = response.result.value
+            if let voiceDataArray = voiceDataArray {
+                self.voiceResults += voiceDataArray
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "voiceResultsUpdated"), object: nil)
+            }
+        }
     }
 }

@@ -18,9 +18,9 @@ class ArtData: Mappable {
     var description: String?
     var updatedAt: String?
     var createdAt: String?
-    var Artist: Artist?
-    var ThumbImage: ThumbImage?
-    var Images: [Image]?
+    var artist: Artist?
+    var thumbImage: ThumbImage?
+    var images: [Image]?
     
     required init?(map: Map) {
     }
@@ -34,9 +34,9 @@ class ArtData: Mappable {
         description <- map["description"]
         updatedAt <- map["updatedAt"]
         createdAt <- map["createdAt"]
-        Artist <- map["Artist"]
-        ThumbImage <- map["ThumbImage"]
-        Images <- map["Images"]
+        artist <- map["artist"]
+        thumbImage <- map["thumbImage"]
+        images <- map["images"]
     }
 }
 
