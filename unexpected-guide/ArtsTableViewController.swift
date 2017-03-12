@@ -187,7 +187,7 @@ class ArtsTableViewController: UITableViewController {
             var filtered = searchResults.filter({$0.artId == selectedItem.artId})
             if let thumbImage = filtered[0].thumbImage {
                 ImageLoader.sharedLoader.imageForUrl(urlString: (thumbImage.url!), completionHandler:{(image: UIImage?, url: String) in
-                    voiceCollectionVC.imageList.append(image)
+                    voiceCollectionVC.thumbImage = image
                 })
             }
             if let images = filtered[0].images {

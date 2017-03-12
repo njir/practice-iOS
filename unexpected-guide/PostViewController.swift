@@ -13,6 +13,7 @@ class PostViewController: UICollectionViewController, StaggeredGridLayoutDelegat
     var artId: Int?
     var selectedImage: UIImage?
     let requestManager = RequestManager()
+    var thumbImage: UIImage?
     var imageList: [UIImage?] = []
     
     var voiceResults = [VoiceData]() {
@@ -41,7 +42,7 @@ class PostViewController: UICollectionViewController, StaggeredGridLayoutDelegat
         
         self.collectionView!.contentInset = UIEdgeInsetsMake(12.0, 5.0, 5.0, 5.0)
         
-        let layout : StaggeredGridLayout = self.collectionView!.collectionViewLayout as! StaggeredGridLayout;
+        let layout: StaggeredGridLayout = self.collectionView!.collectionViewLayout as! StaggeredGridLayout;
         layout.delegate = self;
     }
 
@@ -50,14 +51,6 @@ class PostViewController: UICollectionViewController, StaggeredGridLayoutDelegat
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        // to process when user clicked back button
-        if (self.isMovingFromParentViewController){
-          //  imageList.removeAll()
-        }
-    }
-
     // MARK: - UICollectionViewDataSource
     
     override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
@@ -118,8 +111,9 @@ class PostViewController: UICollectionViewController, StaggeredGridLayoutDelegat
             let selectedItem = sender as! PostCell
             
             playVC.voiceUrl = selectedItem.voiceUrl
+            playVC.thumbImage = thumbImage
             for item in imageList {
-                playVC.imageList.append(ImageSource(image: item!))
+                playVC.imageSourceList.append(ImageSource(image: item!))
             }
         }
     }

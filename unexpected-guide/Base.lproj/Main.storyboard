@@ -43,7 +43,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="뜻밖의, 가이드" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fKX-pZ-TMS" userLabel="LogoText">
-                                <rect key="frame" x="100.5" y="154" width="119" height="26"/>
+                                <rect key="frame" x="101" y="154" width="118.5" height="26"/>
                                 <fontDescription key="fontDescription" name="IropkeBatangM" family="Iropke Batang" pointSize="20"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -354,7 +354,7 @@
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="wIw-me-OYG" userLabel="progressSlider">
                                 <rect key="frame" x="49" y="285" width="222" height="31"/>
                                 <connections>
-                                    <action selector="timeSliderDidChange:" destination="fJp-9f-z6l" eventType="valueChanged" id="jrT-Mo-Pgn"/>
+                                    <action selector="progressSliderValueChanged:" destination="fJp-9f-z6l" eventType="valueChanged" id="q15-ba-ZLd"/>
                                 </connections>
                             </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Kf-p7-2p0" userLabel="currentTime">
@@ -390,14 +390,23 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N8e-5Y-abw" userLabel="Play">
                                 <rect key="frame" x="136" y="412" width="48" height="48"/>
                                 <state key="normal" image="playCircleIcon"/>
+                                <connections>
+                                    <action selector="pushPlayBtn:" destination="fJp-9f-z6l" eventType="touchUpInside" id="XNc-4c-Prj"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bD5-IP-CXD">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bD5-IP-CXD" userLabel="Backward">
                                 <rect key="frame" x="42" y="419" width="36" height="36"/>
-                                <state key="normal" image="rewindIcon"/>
+                                <state key="normal" image="backwardIcon"/>
+                                <connections>
+                                    <action selector="pushBackwardBtn:" destination="fJp-9f-z6l" eventType="touchUpInside" id="f7W-Da-TlH"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wJX-VV-t6g" userLabel="Forward">
                                 <rect key="frame" x="244" y="419" width="36" height="36"/>
                                 <state key="normal" image="forwardIcon"/>
+                                <connections>
+                                    <action selector="pushForwardBtn:" destination="fJp-9f-z6l" eventType="touchUpInside" id="Qjf-Sv-Ut9"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -435,7 +444,12 @@
                     </view>
                     <navigationItem key="navigationItem" id="tTa-Vg-JGr"/>
                     <connections>
+                        <outlet property="backwardBtn" destination="bD5-IP-CXD" id="jxa-i4-swf"/>
+                        <outlet property="currentTimeLbl" destination="4Kf-p7-2p0" id="srx-ew-TR7"/>
+                        <outlet property="forwardBtn" destination="wJX-VV-t6g" id="pMQ-OT-Lm8"/>
+                        <outlet property="playBtn" destination="N8e-5Y-abw" id="gHz-Pn-oQS"/>
                         <outlet property="progressSlider" destination="wIw-me-OYG" id="OW2-Bf-yS7"/>
+                        <outlet property="remainTimeLbl" destination="jdG-an-nXg" id="CdG-Lf-5P4"/>
                         <outlet property="slideShow" destination="9r3-VO-1F0" id="0eS-5D-jqB"/>
                     </connections>
                 </viewController>
@@ -447,8 +461,8 @@
     <resources>
         <image name="SearchIcon" width="50" height="50"/>
         <image name="accountIcon" width="48" height="48"/>
+        <image name="backwardIcon" width="36" height="36"/>
         <image name="forwardIcon" width="36" height="36"/>
         <image name="playCircleIcon" width="48" height="48"/>
-        <image name="rewindIcon" width="36" height="36"/>
     </resources>
 </document>

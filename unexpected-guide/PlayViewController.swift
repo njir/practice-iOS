@@ -9,44 +9,108 @@
 import UIKit
 import ImageSlideshow
 import AVFoundation
+import MediaPlayer
 
 class PlayViewController: UIViewController, UIScrollViewDelegate {
-    var imageView: UIImageView!
     var voiceUrl: String?
-    var isPlaying: Bool = false
     var player = AVPlayer()
-    // your player.currentItem.status
-    var playerCurrentItemStatus: AVPlayerItemStatus = .unknown
+    var playerCurrentItemStatus: AVPlayerItemStatus = .unknown // your player.currentItem.status
+    var imageSourceList: [ImageSource] = []
+    var thumbImage: UIImage?
+    
     let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
     
-    //var test: String?
-    
     @IBOutlet weak var slideShow: ImageSlideshow!
-    var imageList: [ImageSource] = []
-    
     @IBOutlet weak var progressSlider: UISlider!
-    @IBOutlet weak var currentTime: UILabel!
+    @IBOutlet weak var currentTimeLbl: UILabel!
+    @IBOutlet weak var remainTimeLbl: UILabel!
+    @IBOutlet weak var playBtn: UIButton!
+    @IBOutlet weak var forwardBtn: UIButton!
+    @IBOutlet weak var backwardBtn: UIButton!
+    
+    // properties for Play Audio
+    var currentTime: Double {
+        get {
+            return CMTimeGetSeconds(player.currentTime())
+        }
+        set {
+            let newTime = CMTimeMakeWithSeconds(newValue, 1)
+            player.seek(to: newTime, toleranceBefore: kCMTimeZero, toleranceAfter: kCMTimeZero)
+        }
+    }
+    
+    var duration: Double {
+        guard let currentItem = player.currentItem else { return 0.0 }
+        return CMTimeGetSeconds(currentItem.duration)
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-         // Show indicatior
-        activityIndicator.center = view.center
-        activityIndicator.startAnimating()
-        view.addSubview(activityIndicator)
+        configureView()
+        // Setup background playing
+        let session:AVAudioSession = AVAudioSession.sharedInstance()
+        do {
+            try session.setCategory(AVAudioSessionCategoryPlayback)
+            try session.setActive(true)
+            
+            UIApplication.shared.beginReceivingRemoteControlEvents()
+        } catch {
+            //catching the error.
+            print("Error")
+            
+        }
+    }
+    
+    func updateNowPlayingInfoCenter() {
+        let albumArtWork = MPMediaItemArtwork(image: thumbImage!)
+        MPNowPlayingInfoCenter.default().nowPlayingInfo = [
+            MPMediaItemPropertyTitle:  "제목" ,
+            MPMediaItemPropertyArtist:  "아티스트" ,
+            MPMediaItemPropertyArtwork: albumArtWork,
+            MPNowPlayingInfoPropertyPlaybackRate: NSNumber(value:  1.0 )  // 재생 속도
+        ]
         
+        /*
+        let currentTime = Float(CMTimeGetSeconds(player.currentTime()))
+        let duration = Float(CMTimeGetSeconds((player.currentItem?.asset.duration) ?? CMTimeMake(0, 0)))
+        let remainTime: Float = duration - currentTime
+        // Update progress
+        MPNowPlayingInfoCenter.default().nowPlayingInfo![MPNowPlayingInfoPropertyElapsedPlaybackTime] = createTimeString(time: currentTime)
+        
+        MPNowPlayingInfoCenter.default().nowPlayingInfo![MPMediaItemPropertyPlaybackDuration] = createTimeString(time: remainTime)
+ */
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configureView()
         setSlideShow()
         
         if playerCurrentItemStatus == .readyToPlay {
             activityIndicator.stopAnimating()
         }
     }
+    
+    override func remoteControlReceived(with event: UIEvent?) {
+        if let e = event , e.type == .remoteControl {
+            switch e.subtype {
+            case .remoteControlPlay:
+                player.play()
+                playBtn.setImage(UIImage(named: "pauseCircleIcon"), for: UIControlState.normal)
+            case .remoteControlPause:
+                player.pause()
+                playBtn.setImage(UIImage(named: "playCircleIcon"), for: UIControlState.normal)
+            case .remoteControlPreviousTrack:
+                changeAudioTime(changeTo: -10)
+            case .remoteControlNextTrack:
+                changeAudioTime(changeTo: +10)
+            default:
+                break
+            }
+        }
+    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -55,8 +119,6 @@ class PlayViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
-        isPlaying = false
         
         player.pause()
         player.replaceCurrentItem(with: nil)
@@ -67,22 +129,38 @@ class PlayViewController: UIViewController, UIScrollViewDelegate {
     }
     
     @IBAction func pushPlayBtn(_ sender: Any) {
-        isPlaying = true
-        player.play()
+        if player.rate != 1.0 {
+            // Not playing forward, so play.
+            if currentTime == duration {
+                currentTime = 0.0
+            }
+            playBtn.setImage(UIImage(named: "pauseCircleIcon"), for: UIControlState.normal)
+            player.play()
+        }
+        else {
+            // Playing, so pause.
+            playBtn.setImage(UIImage(named: "playCircleIcon"), for: UIControlState.normal)
+            player.pause()
+        }
     }
+    
     @IBAction func pushBackwardBtn(_ sender: Any) {
-        var currentTime: Float64 = CMTimeGetSeconds(player.currentTime())
-        currentTime -= 10.0
-        player.seek(to: CMTimeMakeWithSeconds(currentTime, Int32(NSEC_PER_SEC)), toleranceBefore: kCMTimeZero, toleranceAfter: kCMTimeZero)
-        
+        changeAudioTime(changeTo: -10)
+        updateAudioProgressView()
+    }
+
+    @IBAction func pushForwardBtn(_ sender: Any) {
+        changeAudioTime(changeTo: +10)
         updateAudioProgressView()
     }
     
-    @IBAction func pushForwardBtn(_ sender: Any) {
-         var currentTime: Float64 = CMTimeGetSeconds(player.currentTime())
-        currentTime += 10.0
-        player.seek(to: CMTimeMakeWithSeconds(currentTime, Int32(NSEC_PER_SEC)), toleranceBefore: kCMTimeZero, toleranceAfter: kCMTimeZero)
-        updateAudioProgressView()
+    @IBAction func progressSliderValueChanged(_ sender: UISlider) {
+        let duration = Float(CMTimeGetSeconds((player.currentItem?.asset.duration)!))
+        currentTime = Double(sender.value * duration)
+        let seconds: Int64 = Int64(progressSlider.value * duration)
+        let targetTime: CMTime = CMTimeMake(seconds, 1)
+        
+        player.seek(to: targetTime)
     }
     
     func setSlideShow() {
@@ -92,12 +170,8 @@ class PlayViewController: UIViewController, UIScrollViewDelegate {
         slideShow.pageControl.currentPageIndicatorTintColor = UIColor.lightGray
         slideShow.pageControl.pageIndicatorTintColor = UIColor.black
         slideShow.contentScaleMode = UIViewContentMode.scaleAspectFill
-        slideShow.currentPageChanged = { page in
-            print("current page:", page)
-        }
-        
-        // try out other sources such as `afNetworkingSource`, `alamofireSource` or `sdWebImageSource` or `kingfisherSource`
-        slideShow.setImageInputs(imageList)
+        imageSourceList.insert(ImageSource(image: thumbImage!), at: 0)
+        slideShow.setImageInputs(imageSourceList)
     }
     
     func configureView() {
@@ -106,20 +180,42 @@ class PlayViewController: UIViewController, UIScrollViewDelegate {
         player.rate = 1.0
         
         Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateAudioProgressView), userInfo: nil, repeats: true)
-        let currentTime = Float(CMTimeGetSeconds(player.currentTime()))
-        let duration = Float(CMTimeGetSeconds((player.currentItem?.asset.duration)!))
-        // Update progress
-        progressSlider.setValue(Float(currentTime/duration), animated: false)
+        updateAudioProgressView()
+        updateNowPlayingInfoCenter()
         player.pause()
         playerCurrentItemStatus = playerItem.status
     }
-    
+ 
     func updateAudioProgressView() {
-        if isPlaying {
-            let currentTime = Float(CMTimeGetSeconds(player.currentTime()))
-            let duration = Float(CMTimeGetSeconds((player.currentItem?.asset.duration)!))
-            // Update progress
-            progressSlider.setValue(Float(currentTime/duration), animated: true)
-        }
+        let currentTime = Float(CMTimeGetSeconds(player.currentTime()))
+        let duration = Float(CMTimeGetSeconds((player.currentItem?.asset.duration) ?? CMTimeMake(0, 0)))
+        let remainTime: Float = duration - currentTime
+        // Update progress
+        progressSlider.setValue(Float(currentTime/duration), animated: true)
+        currentTimeLbl.text = createTimeString(time: currentTime)
+        remainTimeLbl.text = "-" + createTimeString(time: remainTime)
+    }
+    
+    func changeAudioTime(changeTo time: Float64) {
+        var currentTime: Float64 = CMTimeGetSeconds(player.currentTime())
+        currentTime += time
+        player.seek(to: CMTimeMakeWithSeconds(currentTime, Int32(NSEC_PER_SEC)), toleranceBefore: kCMTimeZero, toleranceAfter: kCMTimeZero)
+    }
+    
+    
+// MARK: Convenience
+     let timeRemainingFormatter: DateComponentsFormatter = {
+        let formatter = DateComponentsFormatter()
+        formatter.zeroFormattingBehavior = .pad
+        formatter.allowedUnits = [.minute, .second]
+        
+        return formatter
+    }()
+    
+    func createTimeString(time: Float) -> String {
+        let components = NSDateComponents()
+        components.second = Int(max(0.0, time))
+        
+        return timeRemainingFormatter.string(from: components as DateComponents)!
     }
 }
