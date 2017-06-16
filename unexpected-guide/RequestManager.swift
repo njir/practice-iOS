@@ -23,7 +23,7 @@ class RequestManager {
     }
     
     func searchArt(searchText: String) {
-        let url: String = "http://api-dev.failnicely.com:3000/api/art?keyword=\(searchText)&" + pageString // TODO: add pageNumber
+        let url: String = "" + pageString // TODO: add pageNumber
         print(url)
         
         Alamofire.request(url).responseArray { (response: DataResponse<[ArtData]>) in
@@ -47,7 +47,7 @@ class RequestManager {
     
     // Search Voie
     func searchVoice(artId: Int) {
-        let url: String = "http://api-dev.failnicely.com:3000/api/voice/art/\(artId)?" + pageString // TODO: add pageNumber
+        let url: String = "" + pageString // TODO: add pageNumber
         print("voice:", url)
         
         Alamofire.request(url).responseArray { (response: DataResponse<[VoiceData]>) in
