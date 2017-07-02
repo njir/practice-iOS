@@ -32,6 +32,7 @@
 		8461BB761E59521C009B7B31 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8461BB751E59521C009B7B31 /* PostViewController.swift */; };
 		8461BB7D1E5964A5009B7B31 /* StaggeredGridLayoutAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8461BB7C1E5964A5009B7B31 /* StaggeredGridLayoutAttributes.swift */; };
 		846811131E5483E700570090 /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846811121E5483E700570090 /* RequestManager.swift */; };
+		846B4C561F09291E0054F3AB /* MKHSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846B4C551F09291E0054F3AB /* MKHSegmentedControl.swift */; };
 		8476B7A31E65C5B10060B28D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8476B7A21E65C5B10060B28D /* Extensions.swift */; };
 		847716501E4FE29A00D9850F /* ArtData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8477164F1E4FE29A00D9850F /* ArtData.swift */; };
 		84D15F861E5DB90B007D3577 /* IropkeBatangM.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84D15F851E5DB90B007D3577 /* IropkeBatangM.ttf */; };
@@ -80,6 +81,7 @@
 		8461BB751E59521C009B7B31 /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		8461BB7C1E5964A5009B7B31 /* StaggeredGridLayoutAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaggeredGridLayoutAttributes.swift; sourceTree = "<group>"; };
 		846811121E5483E700570090 /* RequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
+		846B4C551F09291E0054F3AB /* MKHSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKHSegmentedControl.swift; sourceTree = "<group>"; };
 		8476B7A21E65C5B10060B28D /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		8477164F1E4FE29A00D9850F /* ArtData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArtData.swift; sourceTree = "<group>"; };
 		84D15F851E5DB90B007D3577 /* IropkeBatangM.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = IropkeBatangM.ttf; sourceTree = "<group>"; };
@@ -236,6 +238,7 @@
 			isa = PBXGroup;
 			children = (
 				842DF99A1E4F225E00A6DE6E /* SearchViewController.swift */,
+				846B4C551F09291E0054F3AB /* MKHSegmentedControl.swift */,
 			);
 			name = SearchView;
 			sourceTree = "<group>";
@@ -508,6 +511,7 @@
 				840348E11E61703C003473DA /* VoiceData.swift in Sources */,
 				840348DF1E613FE1003473DA /* DesignableUITextField.swift in Sources */,
 				8461BB7D1E5964A5009B7B31 /* StaggeredGridLayoutAttributes.swift in Sources */,
+				846B4C561F09291E0054F3AB /* MKHSegmentedControl.swift in Sources */,
 				842DF9961E4F225100A6DE6E /* ArtsTableViewController.swift in Sources */,
 				8428E8A31E5336E400CB1755 /* ImageLoader.swift in Sources */,
 				8461BB721E595217009B7B31 /* StaggeredGridLayout.swift in Sources */,

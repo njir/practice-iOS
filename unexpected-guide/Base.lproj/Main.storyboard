@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="5D8-2S-ZUc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="5D8-2S-ZUc">
     <device id="retina3_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -43,19 +43,28 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="뜻밖의, 가이드" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fKX-pZ-TMS" userLabel="LogoText">
-                                <rect key="frame" x="101" y="154" width="118.5" height="26"/>
+                                <rect key="frame" x="101.5" y="154" width="118.5" height="26"/>
                                 <fontDescription key="fontDescription" name="IropkeBatangM" family="Iropke Batang" pointSize="20"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="7zW-FM-y0d">
+                                <rect key="frame" x="16" y="263" width="121" height="29"/>
+                                <segments>
+                                    <segment title="First"/>
+                                    <segment title="Second"/>
+                                </segments>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" red="0.97254901960784312" green="0.97254901960784312" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="yZB-2X-BdM" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="Cba-jP-VLI"/>
                             <constraint firstItem="yZB-2X-BdM" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="ERz-uG-hSP"/>
                             <constraint firstItem="yZB-2X-BdM" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="XHA-BU-YDY"/>
+                            <constraint firstItem="7zW-FM-y0d" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="YXh-RQ-6fV"/>
                             <constraint firstItem="yZB-2X-BdM" firstAttribute="top" secondItem="fKX-pZ-TMS" secondAttribute="bottom" constant="45" id="a7m-nV-YaP"/>
                             <constraint firstItem="fKX-pZ-TMS" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="pIX-ww-I8i"/>
+                            <constraint firstItem="7zW-FM-y0d" firstAttribute="top" secondItem="yZB-2X-BdM" secondAttribute="bottom" constant="8" id="rC8-iF-rW2"/>
                             <constraint firstItem="yZB-2X-BdM" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="yiT-BD-lhM"/>
                         </constraints>
                     </view>
@@ -98,7 +107,7 @@
                                 <rect key="frame" x="0.0" y="22" width="320" height="106"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4ff-MQ-c40" id="xbF-dq-9Ra">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="105"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="105.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="z7m-Od-2HR" userLabel="ArtImage">
